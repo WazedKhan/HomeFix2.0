@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="container mt-5 p-md-1">
+    <div class="container mt-0">
         <div class="row d-flex justify-content-center">
             <div class="col-md-7">
-                <div class="card p-3 py-4">
-                    <div class="text-center"> <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle"> </div>
+                <div class="card p-1 py-4">
+                    <div class="text-center"> <img src="{{ url('/storage/') }}" width="70%" height="70%" class="rounded"> </div>
                     <div class="text-center mt-3">
-                        <h5 class="mt-2 mb-0">{{ $service->user->name }}</h5> <span>Car Service Provider</span>
+                        <h5 class="mt-2 mb-0">Name</h5> <span>Car Service Provider</span>
                         <div class="px-4 mt-1">
                             <p class="fonts"> I have 5 years experience of car service </p>
                         </div>
@@ -28,7 +28,9 @@
           <strong><span>Cost: {{ $service->cost }}</span> Taka</strong>
           <p class="card-text">Service Area: {{ $service->area }}</p>
           <p class="card-text">{{ $service->detail }}</p>
-          <a href="#" class="btn btn-primary">Take The Service</a>
+          @if (Auth::user()->role != 'sp')
+          <a href="{{ route('create.cart',$service->id) }}" class="btn btn-primary">Take The Service</a>
+          @endif
         </div>
         <div class="card-footer text-muted">
           2 days ago

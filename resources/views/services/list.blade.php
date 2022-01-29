@@ -22,7 +22,7 @@
             <td>{{ $item->name }}</td>
             <td>{{ $item->cost }}</td>
             <td>{{ $item->area }}</td>
-            <td>{{ $item->user->name }}</td>
+            <td>{{ $item->service_provider->nid_name }}</td>
             <td>{{ $item->type->name }}</td>
             <td>
                 <a class="btn btn-outline-primary" href="{{ route('service.detail',$item->id) }}">Details</a>

@@ -30,11 +30,8 @@
                 <a class="navbar-brand float-right" href="{{ route('service.list') }}">
                     Services
                 </a>
-                <a class="navbar-brand float-right" href="{{ route('service.list.create') }}">
-                    Create Service
-                </a>
-                <a class="navbar-brand float-right" href="{{ route('service.create.view') }}">
-                    Create Service Type
+                <a class="navbar-brand float-right" href="{{ route('view.cart') }}">
+                    Cart
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -62,6 +59,24 @@
                                 </li>
                             @endif
                         @else
+                        @if (auth()->user()->role !='admin'&& auth()->user()->role !='sp')
+                        <a class="navbar-brand float-right btn btn-outline-primary" href="{{ route('apply.form') }}">
+                            সেবা প্রদানের জন্য আবেদন করুন
+                        </a>
+                        @endif
+                        @if (auth()->user()->role =='admin')
+                        <a class="navbar-brand float-right btn btn-outline-secondary" href="{{ route('service.create.view') }}">
+                            Create Service Type
+                        </a>
+                        <a class="navbar-brand float-right btn btn-outline-primary" href="{{ route('application.list') }}">
+                            Applications
+                        </a>
+                        @endif
+                        @if (auth()->user()->role =='admin'||auth()->user()->role =='sp')
+                        <a class="navbar-brand float-right btn btn-outline-secondary" href="{{ route('service.list.create') }}">
+                            Create Service
+                        </a>
+                        @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Type;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,5 +24,11 @@ class HomeController extends Controller
     {
         $types = Type::all();
         return view('home',compact('types'));
+    }
+
+    public function serviceIndex()
+    {
+        $service = Service::all();
+        return view('services.list',compact('service'));
     }
 }
