@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ServiceProvider;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\ApplicationNotification;
 
 class ServiceProviderController extends Controller
 {
@@ -26,6 +27,7 @@ class ServiceProviderController extends Controller
             'user_id' => Auth::user()->id,
             'nid_number' => request()->nid_number,
             'nid_name' => request()->nid_name,
+            'b_day' => request()->b_day,
             'address' => request()->address,
             'address_2' => request()->address_2,
             'city' => request()->city,
@@ -34,10 +36,13 @@ class ServiceProviderController extends Controller
             'exprience' => request()->exprience,
             'image' => $image_path
         ]);
+        $admin = User::where('role','admin')->first();
+        $admin->notify( new ApplicationNotification());
         return redirect()->route('home');
     }
     public function applicationlist()
     {
+        Auth::user()->notifications->markAsRead();
         $serviceproviders = ServiceProvider::where('status', 'Pending')->get();
         return view('serviceprovider.applications', compact('serviceproviders'));
     }

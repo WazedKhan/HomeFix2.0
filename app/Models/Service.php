@@ -18,4 +18,9 @@ class Service extends Model
     {
         return $this->belongsTo(ServiceProvider::class, 'service_provider_id', 'id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -43,7 +43,15 @@ class CartController extends Controller
 
     public function cartAccept($cart_id)
     {
-        Cart::find($cart_id)->update(['status' => 'Accepted']);
-        return redirect()->back();
+        $cart = Cart::find($cart_id);
+        $provider = ServiceProvider::find($cart->service_provider_id);
+        if ($cart->user_id == Auth::user()->id) {
+            $cart->update(['customer_status' => 'Done']);
+            $provider->update(['job_finished'=>$provider->job_finished+1]);
+            return redirect()->back();
+        } else {
+            $cart->update(['status' => 'Accepted']);
+            return redirect()->back();
+        }
     }
 }

@@ -19,6 +19,7 @@ class CreateCartsTable extends Migration
             $table->unsignedBigInteger('service_provider_id');
             $table->unsignedBigInteger('user_id');
             $table->string('status')->default('Pending');
+            $table->string('customer_status')->default('Pending');
             $table->string('ammount')->nullable();
             $table->timestamps();
         });

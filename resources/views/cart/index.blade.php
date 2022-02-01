@@ -12,9 +12,9 @@
         <th scope="col">Odered Person's Address</th>
         @endif
         <th scope="col">Price</th>
-        <th scope="col">Status</th>
+        <th scope="col">Service Provider Status</th>
         @if (auth()->user()->role != 'user')
-        <th scope="col">Handle</th>
+        <th scope="col">Status</th>
         @endif
       </tr>
     </thead>
@@ -25,7 +25,7 @@
         <td>{{ $item->service->name }}</td>
         @if (auth()->user()->role != 'user')
         <td>{{ $item->user->name }}</td>
-        <td>017512158</td>
+        <td><a href="tel:{{ $item->user->phone }}">{{ $item->user->phone }}</a></td>
         <td>Dhaka</td>
         @endif
         <td>{{ $item->service->cost }} taka</td>
@@ -34,6 +34,17 @@
         <td>
             <a class="btn btn-outline-success" href="{{ route('cart.accept',$item->id) }}">Accept</a>
         </td>
+        @endif
+        @if ($item->user_id == Auth::user()->id)
+          @if ($item->status == 'Accepted' && $item->customer_status != 'Done')
+            <td>
+              <a class="btn btn-outline-success" href="{{ route('cart.accept',$item->id) }}">Done</a>
+            </td>
+          @else
+            <td>{{ $item->customer_status }}</td>
+          @endif
+        @else
+            <td>{{ $item->customer_status }}</td>
         @endif
       </tr>
     @endforeach

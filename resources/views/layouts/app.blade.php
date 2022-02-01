@@ -69,10 +69,10 @@
                             Create Service Type
                         </a>
                         <a class="navbar-brand float-right btn btn-outline-primary" href="{{ route('application.list') }}">
-                            Applications
+                            {{ Auth::user()->unreadnotifications()->count() }} Applications
                         </a>
                         @endif
-                        @if (auth()->user()->role =='admin'||auth()->user()->role =='sp')
+                        @if (auth()->user()->role =='sp')
                         <a class="navbar-brand float-right btn btn-outline-secondary" href="{{ route('service.list.create') }}">
                             Create Service
                         </a>

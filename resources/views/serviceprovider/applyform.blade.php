@@ -13,6 +13,10 @@
         <input type="text" class="form-control" name="nid_name" id="inputAddress2" placeholder="Samiur Rahman Bappi">
     </div>
     <div class="form-group">
+      <label for="inputAddress2">Birth Date</label>
+      <input type="date" class="form-control" name="b_day" id="inputAddress2" placeholder="1990-01-01">
+  </div>
+    <div class="form-group">
       <label for="inputAddress">Address</label>
       <input type="text" class="form-control" name="address" id="inputAddress" placeholder="1234 Main St">
     </div>

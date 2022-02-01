@@ -18,6 +18,7 @@ class CreateServiceProvidersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('nid_number');
             $table->string('nid_name');
+            $table->date('b_day');
             $table->string('address');
             $table->string('address_2');
             $table->string('city');

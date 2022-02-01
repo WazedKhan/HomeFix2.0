@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\ServiceProvider;
 use App\Models\Type;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -62,7 +63,16 @@ class ServiceController extends Controller
 
     public function serviceDetails($id)
     {
+        $count = 0;
         $service = Service::find($id);
-        return view('services.detail', compact('service'));
+        $cart = Cart::where('service_provider_id',$service->service_provider->id)->get();
+        foreach($cart as $item)
+        {
+            if($item->status=='Accepted')
+            {
+                $count+=1;
+            }
+        }
+        return view('services.detail', compact('service', 'cart','count'));
     }
 }
