@@ -17,6 +17,8 @@ Route::get('/service/list/create', [App\Http\Controllers\Service\ServiceControll
 Route::post('/service/list/store', [App\Http\Controllers\Service\ServiceController::class, 'storeService'])->name('service.list.store');
 Route::get('/service/create/view', [App\Http\Controllers\Service\ServiceController::class, 'typeCreateview'])->name('service.create.view');
 Route::post('/service/type/store', [App\Http\Controllers\Service\ServiceController::class, 'storeType'])->name('type.store');
+Route::get('/service/type/update/{id}', [App\Http\Controllers\Service\ServiceController::class, 'updateTypeView'])->name('type.update.view');
+Route::patch('/type/update/{id}', [App\Http\Controllers\Service\ServiceController::class, 'updateType'])->name('type.update');
 
 //ServiceProvider Route middlwared
 Route::get('/apply/forsp', [App\Http\Controllers\ServiceProviderController::class, 'applyForm'])->name('apply.form');

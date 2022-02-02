@@ -75,4 +75,21 @@ class ServiceController extends Controller
         }
         return view('services.detail', compact('service', 'cart','count'));
     }
+
+    public function updateTypeView($id)
+    {
+        $data = Type::find($id);
+        return view('services.update_type',compact('data'));
+    }
+
+    public function updateType($id)
+    {
+        $data = Type::find($id);
+        dd('Go back working here');
+        if ($data->hasfile('image')) {
+            dd('yes');
+        }
+        $data->update(['']);
+        return redirect()->route('home');
+    }
 }
