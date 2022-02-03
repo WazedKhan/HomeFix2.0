@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SslCommerzPaymentController;
 
 
 
@@ -30,3 +31,16 @@ Route::post('/application/action/{provider_id}', [App\Http\Controllers\ServicePr
 Route::get('service/cart/{id}', [App\Http\Controllers\CartController::class, 'createCart'])->name('create.cart');
 Route::get('service/cart', [App\Http\Controllers\CartController::class, 'cartList'])->name('view.cart');
 Route::get('cart/accept/{cart_id}', [App\Http\Controllers\CartController::class, 'cartAccept'])->name('cart.accept');
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/pay', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
