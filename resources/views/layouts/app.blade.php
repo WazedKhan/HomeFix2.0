@@ -68,6 +68,9 @@
                         <a class="navbar-brand float-right btn btn-outline-secondary" href="{{ route('service.create.view') }}">
                             Create Service Type
                         </a>
+                        <a class="navbar-brand float-right btn btn-outline-secondary" href="{{ route('trans') }}">
+                            Transaction List
+                        </a>
                         <a class="navbar-brand float-right btn btn-outline-primary" href="{{ route('application.list') }}">
                             {{ Auth::user()->unreadnotifications()->count() }} Applications
                         </a>

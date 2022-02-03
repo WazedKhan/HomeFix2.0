@@ -9,9 +9,9 @@ use App\Library\SslCommerz\SslCommerzNotification;
 
 class SslCommerzPaymentController extends Controller
 {
-    public function Userinfo()
+    public function __construct()
     {
-        Auth::check();
+        $this->middleware('auth');
     }
 
     public function exampleEasyCheckout()
