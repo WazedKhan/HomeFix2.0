@@ -78,7 +78,7 @@ class ServiceController extends Controller
 
     public function serviceDelete($id)
     {
-        Service::find($id)->delete();
+        $service = Service::find($id)->update(['status'=>'detactive']);;
         return redirect()->back();
     }
 

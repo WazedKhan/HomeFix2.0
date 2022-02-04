@@ -35,11 +35,12 @@ class HomeController extends Controller
         if(request()->search){
             $key=request()->search;
             $service = Service::where('name','LIKE','%'.$key.'%')
+                ->where('status','active')
                 ->orWhere('cost','LIKE','%'.$key.'%')
                 ->get();
             return view('services.list',compact('service','key'));
         }
-        $service = Service::all();
+        $service = Service::where('status','active')->get();
         return view('services.list',compact('service','key'));
     }
 }
