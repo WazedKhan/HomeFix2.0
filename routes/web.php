@@ -9,10 +9,13 @@ use App\Http\Controllers\SslCommerzPaymentController;
 
 Auth::routes();
 
+Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
+
 // Profile
 Route::get('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::get('/profile/edit/{id}', [App\Http\Controllers\ProfileController::class, 'editProfileView'])->name('profile.edit.view');
+Route::post('/profile/update/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 Route::get('/providers', [App\Http\Controllers\ServiceProviderController::class, 'providers'])->name('providers');
-
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

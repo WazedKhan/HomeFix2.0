@@ -24,7 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         $types = Type::all();
-        $service = Service::all();
+        $service = Service::where('status','active')->get();
         $provider = ServiceProvider::all();
         return view('home',compact('types','service','provider'));
     }

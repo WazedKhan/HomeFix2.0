@@ -65,6 +65,12 @@
                         </a>
                         @endif
                         @if (auth()->user()->role =='admin')
+                        <a class="navbar-brand float-right btn btn-danger">
+                            Admin On Deck
+                        </a>
+                        <a class="navbar-brand float-right btn btn-outline-primary" href="{{ route('dashboard') }}">
+                            Dashboard
+                        </a>
                         <a class="navbar-brand float-right btn btn-outline-secondary" href="{{ route('service.create.view') }}">
                             Create Service Type
                         </a>
@@ -74,6 +80,7 @@
                         <a class="navbar-brand float-right btn btn-outline-primary" href="{{ route('application.list') }}">
                             {{ Auth::user()->unreadnotifications()->count() }} Applications
                         </a>
+                        
                         @endif
                         @if (auth()->user()->role =='sp')
                         <a class="navbar-brand float-right btn btn-outline-secondary" href="{{ route('service.list.create') }}">

@@ -12,7 +12,7 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
             <div class="row align-items-center flex-row-reverse">
                 <div class="col-lg-6">
                     <div class="about-text go-to">
-                        <h2 class="dark-color">{{ $profile->user->name }} @if (Auth::user()->id == $profile->user->id)</h2><a href="http://"><span> <small>Edit</small></span></a>@endif
+                        <h2 class="dark-color">{{ $profile->user->name }} @if (Auth::user()->id == $profile->user->id)</h2><a href="{{ route('profile.edit.view',Auth::user()->id) }}"><span> <small>Edit</small></span></a>@endif
                         @if ($provider != null)
                         <h6 class="theme-color lead">NID Number: {{ $provider->nid_number }} </h6>
                         @endif

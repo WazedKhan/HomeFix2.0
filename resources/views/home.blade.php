@@ -19,11 +19,12 @@ a:link {
       </div>
     </div>
     <div class="card m-1">
-      <img class="card-img-top border border-light" src="{{ url('/asset/serve.png') }}" width="100" height="200">
+      <img class="card-img-top border border-light" src="{{ url('/asset/serve.jpg') }}" width="100" height="200">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Detail</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title text-center">Contact Management Team For Any Problem</h5>
+        <p class="card-text text-center"> <strong>Mail- </strong><a href="mailto:samiur.rahman19@gmail.com">
+          samiur.rahman19@gmail.com</a></p>
+        <p class="card-text text-center" >Phone- <a href="tel:017">01682169231</a></p>
       </div>
     </div>
     <div class="card m-1">
@@ -47,14 +48,12 @@ a:link {
               <h5 class="card-title">{{ $item->name }}</h5>
               <p class="card-text">{{ $item->detail }}</p>
               <p class="card-text"><small class="text-muted">{{ $item->updated_at->diffforhumans() }}</small></p>
+              @if (Auth::check() && Auth::user()->role=='admin')
+              <a class="link-secondary card-text btn btn-outline-dark m-1" href="{{ route('type.update.view',$item->id) }}">Edit</a>
+              @endif
             </div>
         </div>
     </a>
-    @if (Auth::check() && Auth::user()->role=='admin')
-    <div class="container" >
-      <a class="link-secondary " href="{{ route('type.update.view',$item->id) }}">Edit</a>
-    </div>
-    @endif
     @endforeach
 </div>
 @endsection

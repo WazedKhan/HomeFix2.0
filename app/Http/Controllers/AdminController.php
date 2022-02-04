@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\User;
 use App\Models\Order;
+use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Models\ServiceProvider;
 
 class AdminController extends Controller
 {
@@ -22,5 +26,20 @@ class AdminController extends Controller
         }
         
         return view('trans.list',compact('transList','total'));
+    }
+
+    public function dashboard()
+    {
+        $user=User::where('role','user')->get();
+        $servie=Service::where('status','active')->get();
+        $provider=ServiceProvider::all();
+        $order = Cart::all();
+        $trans = Order::all();
+        $total = 0;
+        foreach($trans as $item)
+        {
+            $total += $item->amount;
+        }
+        return view('dashboard',compact('user','servie','provider','order','trans','total'));
     }
 }

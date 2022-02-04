@@ -28,9 +28,31 @@ class ProfileController extends Controller
         if(User::find($user_id)->role=='sp')
         {
             $provider = ServiceProvider::where('user_id',$user_id)->first();
-            $service = Service::where('service_provider_id',$provider->id)->get();
+            $service = Service::where('service_provider_id',$provider->id)->where('status','active')->get();
         }
         $profile = Profile::where('user_id',$user_id)->first();
         return view('profile.index',compact('profile','cart','service','provider'));
+    }
+    public function editProfileView($profile)
+    {
+        $profile=Profile::find($profile);
+        return view('profile.edit',compact('profile'));
+    }
+
+    public function update($user_id)    
+    {
+        
+        $user=User::find($user_id);
+        $image_path = $user->image;
+        if(request('image')){
+            $image_path  = request('image')->store('profile', 'public');
+        }
+        $user->update([
+            'name'=>request()->name,
+            'email'=>request()->email,
+            'phone'=>request()->phone,
+            'image'=>$image_path,
+        ]);
+        return redirect()->back();
     }
 }

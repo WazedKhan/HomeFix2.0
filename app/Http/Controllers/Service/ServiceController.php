@@ -82,6 +82,11 @@ class ServiceController extends Controller
         return redirect()->back();
     }
 
+    public function serviceUpdate($service_id)
+    {
+        dd('It service update page');
+    }
+
     public function updateTypeView($id)
     {
         $data = Type::find($id);
@@ -91,11 +96,15 @@ class ServiceController extends Controller
     public function updateType($id)
     {
         $data = Type::find($id);
-        dd('Go back working here');
-        if ($data->hasfile('image')) {
-            dd('yes');
+        $image_path = $data->image;
+        if(request('image')){
+            $image_path  = request('image')->store('profile', 'public');
         }
-        $data->update(['']);
+        $data->update([
+            'name'=>request()->name,
+            'detail'=>request()->detail,
+            'image'=>$image_path
+        ]);
         return redirect()->route('home');
     }
 }

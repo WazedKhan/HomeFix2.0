@@ -59,7 +59,7 @@ body{
             <td>{{ $item->type->name }}</td>
             <td>
                 <a class="btn btn-outline-primary" href="{{ route('service.detail',$item->id) }}">Details</a>
-                @if (Auth::user()->id == $item->service_provider->user_id)
+                @if (Auth::check() && Auth::user()->id == $item->service_provider->user_id || Auth::check() && Auth::user()->role == 'admin')
                 <a class="btn btn-outline-danger" href="{{ route('service.delete',$item->id) }}">Delete</a>
                 @endif
             </td>
