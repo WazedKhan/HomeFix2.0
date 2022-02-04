@@ -38,7 +38,7 @@
         @if ($item->user_id == Auth::user()->id)
           @if ($item->status == 'Accepted' && $item->customer_status != 'Done')
             <td>
-              <a class="btn btn-outline-info" href="{{ url('/pay') }}">Pay Now</a>
+              <a class="btn btn-outline-info" href="{{ route('goto.payment',$item->id) }}">Pay Now</a>
               <a class="btn btn-outline-success" href="{{ route('cart.accept',$item->id) }}">Done</a>
             </td>
           @else

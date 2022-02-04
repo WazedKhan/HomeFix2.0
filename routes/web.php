@@ -34,7 +34,7 @@ Route::get('service/cart', [App\Http\Controllers\CartController::class, 'cartLis
 Route::get('cart/accept/{cart_id}', [App\Http\Controllers\CartController::class, 'cartAccept'])->name('cart.accept');
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-Route::get('/pay', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+Route::get('/cart/pay/{service_id}', [SslCommerzPaymentController::class, 'exampleHostedCheckout'])->name('goto.payment');
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
 Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
