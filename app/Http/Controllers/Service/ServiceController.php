@@ -76,6 +76,12 @@ class ServiceController extends Controller
         return view('services.detail', compact('service', 'cart','count'));
     }
 
+    public function serviceDelete($id)
+    {
+        Service::find($id)->delete();
+        return redirect()->back();
+    }
+
     public function updateTypeView($id)
     {
         $data = Type::find($id);

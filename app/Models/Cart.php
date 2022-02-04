@@ -18,4 +18,8 @@ class Cart extends Model
     {
         return $this->belongsTo(Service::class);
     }
+    public function service_provider()
+    {
+        return $this->belongsTo(ServiceProvider::class);
+    }
 }

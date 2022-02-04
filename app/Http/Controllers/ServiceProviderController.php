@@ -58,4 +58,10 @@ class ServiceProviderController extends Controller
         }
         return redirect()->back();
     }
+
+    public function providers()
+    {
+        $provider = ServiceProvider::all();
+        return view('serviceprovider.list',compact('provider'));
+    }
 }

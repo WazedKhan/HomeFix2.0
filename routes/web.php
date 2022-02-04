@@ -9,11 +9,18 @@ use App\Http\Controllers\SslCommerzPaymentController;
 
 Auth::routes();
 
+// Profile
+Route::get('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::get('/providers', [App\Http\Controllers\ServiceProviderController::class, 'providers'])->name('providers');
+
+
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/service/list', [App\Http\Controllers\HomeController::class, 'serviceIndex'])->name('service.list');
 // Service Routes
 Route::get('/service/type/{id}',   [App\Http\Controllers\Service\ServiceController::class, 'specificService'])->name('type.list');
 Route::get('/service/detail/{id}', [App\Http\Controllers\Service\ServiceController::class, 'serviceDetails'])->name('service.detail');
+Route::get('/service/delete/{id}', [App\Http\Controllers\Service\ServiceController::class, 'serviceDelete'])->name('service.delete');
 // Middlewared service routes
 Route::get('/service/list/create', [App\Http\Controllers\Service\ServiceController::class, 'createService'])->name('service.list.create');
 Route::post('/service/list/store', [App\Http\Controllers\Service\ServiceController::class, 'storeService'])->name('service.list.store');

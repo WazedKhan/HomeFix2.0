@@ -1,7 +1,40 @@
+<style>
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 22%;
+  position: relative;
+  display: flex;
+}
+
+
+/*Resize the wrap to see the search bar change!*/
+</style>
+
 @extends('layouts.app')
 @section('content')
 
+<div class="text-center"><h3>Services</h3></div>
+
 <div class="container">
+  
+  <form action="{{route('service.list')}}" method="GET">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <input value="{{ $key }}" type="text" placeholder="Search" name="search" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-success">Search</button>
+        </div>
+    </div>
+    </form>
+
 <div class="list-group">
     <table class="table">
         <thead class="thead-dark">
@@ -26,6 +59,9 @@
             <td>{{ $item->type->name }}</td>
             <td>
                 <a class="btn btn-outline-primary" href="{{ route('service.detail',$item->id) }}">Details</a>
+                @if (Auth::user()->id == $item->service_provider->user_id)
+                <a class="btn btn-outline-danger" href="{{ route('service.delete',$item->id) }}">Delete</a>
+                @endif
             </td>
           </tr>
           @endforeach
