@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content') <br> <br>
     <div class="container">
+      <div id="divToPrint">
+        <h2 class="text-center">Dashboard</h2>
         <div class="container">
             <div class="row">
               <div class="col-sm">
@@ -61,7 +63,20 @@
             </div>
           </div>
           <hr>
+        </div>
+    </div>
+    <input class="button" type="button" onClick="PrintDiv('divToPrint');" value="Print">
     </div>
     
     <div class="text-center text-secondary footer">© Copyright 2022 Homefix 0.2 - All Rights reserved </div>
 @endsection
+
+<script language="javascript">
+  function PrintDiv(divName) {
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+  }
+</script>
