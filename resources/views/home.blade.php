@@ -13,7 +13,7 @@ a:link {
     <div class="card m-1">
       <img class="card-img-top border border-light" src="{{ url('/asset/garden.jpg') }}" width="100" height="200" >
       <div class="card-body">
-        <h5 class="card-title">Serviecs</h5>
+        <h5 class="card-title">Services</h5>
         <p class="card-text">We have <strong>{{ $service->count() }}</strong> services ready for you. Just a click away.</p>
         <a href="{{ route('service.list') }}" class="btn btn-primary">Service For Me</a>
       </div>

@@ -3,6 +3,7 @@
     <div class="container">
       <div id="divToPrint">
         <h2 class="text-center">Dashboard</h2>
+        
         <div class="container">
             <div class="row">
               <div class="col-sm">
@@ -11,7 +12,7 @@
                     <div class="card-body">
                       <h5 class="card-title text-center">{{ $provider->count() }}</h5>
                     </div>
-                    
+
                   </div>
               </div>
               <div class="col-sm">
