@@ -18,15 +18,9 @@ a:link {
         <a href="{{ route('service.list') }}" class="btn btn-primary">Service For Me</a>
       </div>
     </div>
-    <div class="card m-1">
-      <img class="card-img-top border border-light" src="{{ url('/asset/serve.jpg') }}" width="100" height="200">
-      <div class="card-body">
-        <h5 class="card-title text-center">Contact Management Team For Any Problem</h5>
-        <p class="card-text text-center"> <strong>Mail- </strong><a href="mailto:samiur.rahman19@gmail.com">
-          samiur.rahman19@gmail.com</a></p>
-        <p class="card-text text-center" >Phone- <a href="tel:017">01682169231</a></p>
-      </div>
-    </div>
+
+    
+
     <div class="card m-1">
       <img class="card-img-top border border-light" src="{{ url('/asset/provider.jpg') }}" width="100" height="200">
       <div class="card-body">
