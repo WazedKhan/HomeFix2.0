@@ -11,6 +11,7 @@
                     <div class="card-body">
                       <h5 class="card-title text-center">{{ $provider->count() }}</h5>
                     </div>
+                    
                   </div>
               </div>
               <div class="col-sm">
