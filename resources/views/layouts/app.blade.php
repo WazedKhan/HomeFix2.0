@@ -33,10 +33,7 @@
                 <a class="navbar-brand float-right" href="{{ route('view.cart') }}">
                     Cart
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
@@ -60,30 +57,30 @@
                             @endif
                         @else
                         @if (auth()->user()->role !='admin'&& auth()->user()->role !='sp')
-                        <a class="navbar-brand float-right btn btn-outline-primary" href="{{ route('apply.form') }}">
+                        <a class="navbar-brand float-right" href="{{ route('apply.form') }}">
                             সেবা প্রদানের জন্য আবেদন করুন
                         </a>
                         @endif
                         @if (auth()->user()->role =='admin')
-                        <a class="navbar-brand float-right btn btn-danger">
+                        <a class="navbar-brand float-right">
                             Admin On Deck
                         </a>
-                        <a class="navbar-brand float-right btn btn-outline-primary" href="{{ route('dashboard') }}">
+                        <a class="navbar-brand float-right" href="{{ route('dashboard') }}">
                             Dashboard
                         </a>
-                        <a class="navbar-brand float-right btn btn-outline-secondary" href="{{ route('service.create.view') }}">
+                        <a class="navbar-brand float-right " href="{{ route('service.create.view') }}">
                             Create Service Type
                         </a>
-                        <a class="navbar-brand float-right btn btn-outline-secondary" href="{{ route('trans') }}">
+                        <a class="navbar-brand float-right " href="{{ route('trans') }}">
                             Transaction List
                         </a>
-                        <a class="navbar-brand float-right btn btn-outline-primary" href="{{ route('application.list') }}">
-                            {{ Auth::user()->unreadnotifications()->count() }} Applications
+                        <a class="navbar-brand float-right " href="{{ route('application.list') }}">
+                            Applications( {{ Auth::user()->unreadnotifications()->count() }} )
                         </a>
                         
                         @endif
                         @if (auth()->user()->role =='sp')
-                        <a class="navbar-brand float-right btn btn-outline-secondary" href="{{ route('service.list.create') }}">
+                        <a class="navbar-brand float-right " href="{{ route('service.list.create') }}">
                             Create Service
                         </a>
                         @endif
@@ -118,6 +115,9 @@
         </main>
     </div>
 </body>
+
+@include('layouts.footer')
+
 <script>
     (function (window, document) {
         var loader = function () {
