@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 
 Auth::routes();
 
+Route::get('/', [UserController::class,'index'])->name('user.home');
+
 Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
 
 // Profile
@@ -17,7 +19,7 @@ Route::post('/profile/update/{id}', [App\Http\Controllers\ProfileController::cla
 Route::get('/providers', [App\Http\Controllers\ServiceProviderController::class, 'providers'])->name('providers');
 
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/service/list', [App\Http\Controllers\HomeController::class, 'serviceIndex'])->name('service.list');
 // Service Routes
 Route::get('/service/type/{id}',   [App\Http\Controllers\Service\ServiceController::class, 'specificService'])->name('type.list');
@@ -60,5 +62,4 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 Route::get('/trans/', [AdminController::class,'transList'])->name('trans');
 
 // User Routes
-
-Route::get('/home/', [UserController::class,'index'])->name('user.home');
+Route::get('/provider/profile/{id}', [UserController::class,'providerProfile'])->name('provider.profile');

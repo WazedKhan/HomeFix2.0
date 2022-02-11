@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -31,7 +32,15 @@ class ProfileController extends Controller
             $service = Service::where('service_provider_id',$provider->id)->where('status','active')->get();
         }
         $profile = Profile::where('user_id',$user_id)->first();
-        return view('profile.index',compact('profile','cart','service','provider'));
+
+        if(Auth::user()->role != 'admin'){
+            return view('profile.index',compact('profile','cart','service','provider'));
+        }
+        else{
+            return view('userView.profile',compact('profile','cart','service','provider'));
+        }
+
+        
     }
     public function editProfileView($profile)
     {

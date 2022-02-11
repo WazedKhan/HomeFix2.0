@@ -14,4 +14,10 @@ class UserController extends Controller
         $providers = ServiceProvider::all();
         return view('userView.home',compact('types','providers'));
     }
+
+    public function providerProfile($id)
+    {
+        $provider = ServiceProvider::find($id);
+        return view('userView.profile', compact('provider'));
+    }
 }

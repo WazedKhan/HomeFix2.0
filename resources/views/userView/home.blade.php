@@ -36,7 +36,7 @@
                               <div class="card-footer m-1">
                                   <p><strong>Profession:</strong> {{ $provider->type->name }}</p>
                               </div>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                              <a href="{{ route('provider.profile',$provider->id) }}" class="btn btn-primary">Profile</a>
                             </div>
                           </div>
                         @endforeach
