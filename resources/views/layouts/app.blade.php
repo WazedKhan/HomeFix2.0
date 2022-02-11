@@ -21,6 +21,7 @@
     <link href="{{ asset('/css/profile.css') }}" rel="stylesheet">
 </head>
 <body>
+    @auth
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -120,15 +121,20 @@
                 </div>
             </div>
         </nav>
+        
+        
+    @endauth
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
 </body>
+@auth
+    
 
-@include('layouts.footer')
-
+{{-- @include('layouts.footer') --}}
+@endauth
 <script>
     (function (window, document) {
         var loader = function () {

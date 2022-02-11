@@ -14,7 +14,7 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
                     <div class="about-text go-to">
                         <h2 class="dark-color">{{ $provider->user->name }} </h2><a href="#"><span>
                         <p>
-                            <a class="btn btn-info form-control" href="http://">Hire Me</a>
+                            <a class="btn btn-info form-control" href="{{ route('date.cart',$provider) }}">Hire Me</a>
                         </p>
                         <h6 class="theme-color lead">Profession: {{ $provider->type->name }} </h6> 
                         <div class="row about-list">
@@ -108,4 +108,6 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
     </section>
     
 </div>    
+
+
 @endsection

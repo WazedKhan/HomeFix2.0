@@ -29,9 +29,21 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        @if (Auth::check() && Auth::user()->role == 'admin')
+                            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Admin Panel</a></li>
+                        @endif
+                        @auth
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                        @endauth
                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Servie Provider</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#about">Profile</a></li>
+                        @if (Auth::check())
+                        <li class="nav-item"><a class="nav-link" href="#portfolio">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user.logout') }}">Log Out</a></li>
+                        @else
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

@@ -59,6 +59,9 @@ class ServiceController extends Controller
     public function specificService($id)
     {
         $providers = ServiceProvider::where('type_id', $id)->get();
+        if (Auth::user()->role=='user') {
+            return view('userView.providers', compact('providers'));
+        }
         return view('services.specific_s_list', compact('providers'));
     }
 

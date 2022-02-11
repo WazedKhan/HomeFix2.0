@@ -7,6 +7,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 
 class CartController extends Controller
 {
@@ -15,15 +16,21 @@ class CartController extends Controller
         $this->middleware('auth');
     }
 
-    public function createCart($service_id)
+    public function selectDate($provider_id)
     {
-        $service = Service::find($service_id);
+        return view('userView.date',compact('provider_id'));
+    }
+
+    public function createCart($provider_id)
+    {
+        $provider = ServiceProvider::find($provider_id);
         Cart::create([
-            'service_id' => $service->id,
-            'service_provider_id' => $service->service_provider_id,
+            'type_id' => $provider->type_id,
+            'service_provider_id' => $provider->id,
             'user_id' => Auth::user()->id,
+            'booking_date'=>request()->date
         ]);
-        return redirect()->route('home');
+        return redirect()->route('user.home');
     }
 
     public function cartList()
@@ -34,7 +41,7 @@ class CartController extends Controller
             return view('cart.index', compact('cart'));
         } elseif (Auth::user()->role == 'user') {
             $cart = Cart::where('user_id', Auth::user()->id)->get();
-            return view('cart.index', compact('cart'));
+            return view('userView.dashboard', compact('cart'));
         } else {
             $cart = Cart::all();
             return view('cart.index', compact('cart'));

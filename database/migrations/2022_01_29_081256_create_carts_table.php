@@ -15,9 +15,10 @@ class CreateCartsTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('service_id');
+            $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('service_provider_id');
             $table->unsignedBigInteger('user_id');
+            $table->date('booking_date');
             $table->string('status')->default('Pending');
             $table->string('customer_status')->default('Pending');
             $table->string('ammount')->nullable();

@@ -14,9 +14,9 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function service()
+    public function type()
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsTo(Type::class);
     }
     public function service_provider()
     {

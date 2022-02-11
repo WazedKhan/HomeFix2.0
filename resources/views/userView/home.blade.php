@@ -14,6 +14,7 @@
                         <h4 class="my-3">{{ $type->name }}</h4>
                         <h6 class="my-3">Price {{ $type->cost }} tk</h6>
                         <p class="text-muted">{{ $type->detail }}</p>
+                        <a href="{{ route('type.detail',$type->id) }}" class="btn btn-primary">Find Provider</a>
                     </div>
                 @endforeach
             </div>

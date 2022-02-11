@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SslCommerzPaymentController;
-use App\Http\Controllers\UserController;
 
 Auth::routes();
 
@@ -24,6 +25,7 @@ Route::get('/service/list', [App\Http\Controllers\HomeController::class, 'servic
 // Service Routes
 Route::get('/service/type/{id}',   [App\Http\Controllers\Service\ServiceController::class, 'specificService'])->name('type.list');
 Route::get('/service/detail/{id}', [App\Http\Controllers\Service\ServiceController::class, 'serviceDetails'])->name('service.detail');
+Route::get('/type/services/{id}', [App\Http\Controllers\Service\ServiceController::class, 'specificService'])->name('type.detail');
 Route::get('/service/delete/{id}', [App\Http\Controllers\Service\ServiceController::class, 'serviceDelete'])->name('service.delete');
 // Middlewared service routes
 Route::get('/service/list/create', [App\Http\Controllers\Service\ServiceController::class, 'createService'])->name('service.list.create');
@@ -40,6 +42,7 @@ Route::get('/application/list', [App\Http\Controllers\ServiceProviderController:
 Route::post('/application/action/{provider_id}', [App\Http\Controllers\ServiceProviderController::class, 'providerApprove'])->name('application.action');
 
 // cart
+Route::get('selectDate/cart/{id}', [App\Http\Controllers\CartController::class, 'selectDate'])->name('date.cart');
 Route::get('service/cart/{id}', [App\Http\Controllers\CartController::class, 'createCart'])->name('create.cart');
 Route::get('service/cart', [App\Http\Controllers\CartController::class, 'cartList'])->name('view.cart');
 Route::get('cart/accept/{cart_id}', [App\Http\Controllers\CartController::class, 'cartAccept'])->name('cart.accept');
@@ -63,3 +66,5 @@ Route::get('/trans/', [AdminController::class,'transList'])->name('trans');
 
 // User Routes
 Route::get('/provider/profile/{id}', [UserController::class,'providerProfile'])->name('provider.profile');
+Route::get('/userLogout', [UserController::class,'userLogout'])->name('user.logout');
+Route::get('/user/dashboard', [CartController::class,'cartList'])->name('user.dashboard');
