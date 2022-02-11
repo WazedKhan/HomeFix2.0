@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\ServiceProvider;
+use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\ApplicationNotification;
 
@@ -16,17 +17,29 @@ class ServiceProviderController extends Controller
     }
     public function applyForm()
     {
-        return view('serviceprovider.applyform');
+        $types = Type::all();
+        return view('serviceprovider.applyform', compact('types'));
     }
 
     public function applicationSubmit()
     {
-        // dd(request()->all());
-        $image_path  = request('image')->store('serviceProvider', 'public');
+        // dd(request()->type_id);
+         
+        $image_path  = request('image')->store('profile', 'public');
+        
+        $user = User::create([
+            'role'=>'sp',
+            'image'=>$image_path,
+            'name'=>request()->nid_name,
+            'email'=>request()->email,
+            'phone'=>request()->phone,
+            'password'=>bcrypt(request()->password)
+        ]);
+
         ServiceProvider::create([
-            'user_id' => Auth::user()->id,
+            'user_id' => $user->id,
+            'type_id'=>request()->type_id,
             'nid_number' => request()->nid_number,
-            'nid_name' => request()->nid_name,
             'b_day' => request()->b_day,
             'address' => request()->address,
             'address_2' => request()->address_2,
@@ -34,16 +47,14 @@ class ServiceProviderController extends Controller
             'state' => request()->state,
             'zip' => request()->zip,
             'exprience' => request()->exprience,
-            'image' => $image_path
+            'status' => 'Approve'
         ]);
-        $admin = User::where('role','admin')->first();
-        $admin->notify( new ApplicationNotification());
         return redirect()->route('home');
     }
+
+
     public function applicationlist()
     {
-        Auth::user()->notifications->markAsRead();
-        $serviceproviders = ServiceProvider::where('status', 'Pending')->get();
         return view('serviceprovider.applications', compact('serviceproviders'));
     }
 

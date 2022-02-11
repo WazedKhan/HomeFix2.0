@@ -14,6 +14,11 @@
         <input value="{{ $data->detail }}" type="detail" name="detail" class="form-control">
     </div>
 
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Cost</label>
+      <input value="{{ $data->cost }}" type="detail" name="detail" class="form-control">
+    </div>
+
     <div class="input-group mb-3">
         <div class="custom-file">
           <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">

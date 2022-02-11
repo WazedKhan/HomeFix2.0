@@ -16,8 +16,8 @@ class CreateServiceProvidersTable extends Migration
         Schema::create('service_providers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('type_id');
             $table->string('nid_number');
-            $table->string('nid_name');
             $table->date('b_day');
             $table->string('address');
             $table->string('address_2');
@@ -28,7 +28,6 @@ class CreateServiceProvidersTable extends Migration
             $table->string('status')->default('Pending');
             $table->integer('exprience')->nullable();
             $table->double('job_finished')->default(0);
-            $table->string('image');
             $table->timestamps();
         });
     }

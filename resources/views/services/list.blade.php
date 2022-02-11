@@ -55,13 +55,13 @@ body{
             <td>{{ $item->name }}</td>
             <td>{{ $item->cost }}</td>
             <td>{{ $item->area }}</td>
-            <td>{{ $item->service_provider->nid_name }}</td>
+            <td>{{ $item->name }}</td>
             <td>{{ $item->type->name }}</td>
             <td>
                 <a class="btn btn-outline-primary" href="{{ route('service.detail',$item->id) }}">Details</a>
-                @if (Auth::check() && Auth::user()->id == $item->service_provider->user_id || Auth::check() && Auth::user()->role == 'admin')
+                {{-- @if (Auth::check() && Auth::user()->id == $item->service_provider->user_id || Auth::check() && Auth::user()->role == 'admin') --}}
                 <a class="btn btn-outline-danger" href="{{ route('service.delete',$item->id) }}">Delete</a>
-                @endif
+                {{-- @endif --}}
             </td>
           </tr>
           @endforeach

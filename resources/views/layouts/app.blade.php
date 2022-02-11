@@ -56,33 +56,44 @@
                                 </li>
                             @endif
                         @else
-                        @if (auth()->user()->role !='admin'&& auth()->user()->role !='sp')
-                        <a class="navbar-brand float-right" href="{{ route('apply.form') }}">
-                            সেবা প্রদানের জন্য আবেদন করুন
-                        </a>
-                        @endif
                         @if (auth()->user()->role =='admin')
+
                         <a class="navbar-brand float-right">
                             Admin On Deck
                         </a>
                         <a class="navbar-brand float-right" href="{{ route('dashboard') }}">
                             Dashboard
                         </a>
-                        <a class="navbar-brand float-right " href="{{ route('service.create.view') }}">
-                            Create Service Type
-                        </a>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="navbar-brand float-right" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Service
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('providers') }}">
+                                    Providers List
+                                </a>
+
+                                <a class="dropdown-item" href="{{ route('apply.form') }}">
+                                    Create New Provider
+                                </a>
+
+                                <a class="dropdown-item" href="{{ route('service.create.view') }}">
+                                    Create New Type
+                                </a>
+
+                                <a class="dropdown-item" href="{{ route('service.list.create') }}">
+                                    Create New Service
+                                </a>
+                            </div>
+                        </li>
+
+
                         <a class="navbar-brand float-right " href="{{ route('trans') }}">
                             Transaction List
                         </a>
-                        <a class="navbar-brand float-right " href="{{ route('application.list') }}">
-                            Applications( {{ Auth::user()->unreadnotifications()->count() }} )
-                        </a>
                         
-                        @endif
-                        @if (auth()->user()->role =='sp')
-                        <a class="navbar-brand float-right " href="{{ route('service.list.create') }}">
-                            Create Service
-                        </a>
                         @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

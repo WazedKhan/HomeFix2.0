@@ -10,7 +10,7 @@
                         <div class="row">
                           <div class="col-sm">
                                 <img class="rounded-circle" src="{{ url('/storage/'.$item->user->image) }}" width="30" height="30" >  
-                                <strong>{{ $item->nid_name }}</strong>
+                                <strong>{{ $item->user->name }}</strong>
                           </div>
                           <div class="col-sm">
                             <strong>Lives in: </strong> {{ $item->city }}

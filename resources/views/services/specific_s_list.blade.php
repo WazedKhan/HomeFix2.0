@@ -5,28 +5,30 @@
         <div class="list-group">
             <table class="table">
                 <thead class="thead-dark">
-                  <tr>
+                  <tr class="justify-content-center">
                     <th scope="col">No</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Cost</th>
-                    <th scope="col">Area</th>
-                    <th scope="col">Service Provider</th>
-                    <th scope="col">Service Type</th>
+                    <th scope="col">Profession</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Lives In</th>
+                    <th scope="col">Service Cost</th>
                     <th scope="col">Action</th>
+                    <th scope="col">Reputation</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($service as $key=>$item)
+                    @foreach ($providers as $key=>$item)
                   <tr>
                     <th scope="row">{{ $key+1 }}</th>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->cost }}</td>
-                    <td>{{ $item->area }}</td>
-                    <td>{{ $item->service_provider->nid_name }}</td>
+                    <td>{{ $item->user->name }}</td>
                     <td>{{ $item->type->name }}</td>
+                    <td>{{ $item->user->phone }}</td>
+                    <td>{{ $item->state }}</td>
+                    <td>{{ $item->type->cost }}</td>
                     <td>
-                        <a class="btn btn-outline-primary" href="{{ route('service.detail',$item->id) }}">Details</a>
+                      <a class="btn btn-info" href="#">Hire</a>
                     </td>
+                    <td><p class="h3">🌟🌟🌟🌟🌟</p></td>
                   </tr>
                   @endforeach
                 </tbody>

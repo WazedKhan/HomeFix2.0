@@ -17,7 +17,6 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('area');
-            $table->double('cost');
             $table->string('detail');
             $table->string('status')->default('active');
             $table->unsignedBigInteger('type_id');

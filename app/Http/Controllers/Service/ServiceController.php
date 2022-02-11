@@ -50,6 +50,7 @@ class ServiceController extends Controller
         Type::create([
             'name' => request()->name,
             'detail' => request()->detail,
+            'cost'=>request()->cost,
             'image' => $image_path
         ]);
         return redirect()->route('service.list');
@@ -57,8 +58,8 @@ class ServiceController extends Controller
 
     public function specificService($id)
     {
-        $service = Service::where('type_id', $id)->get();
-        return view('services.specific_s_list', compact('service'));
+        $providers = ServiceProvider::where('type_id', $id)->get();
+        return view('services.specific_s_list', compact('providers'));
     }
 
     public function serviceDetails($id)
