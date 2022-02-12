@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         @if (Auth::check() && Auth::user()->role == 'admin')
-                            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Admin Panel</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Admin Panel</a></li>
                         @endif
                         @auth
                         <li class="nav-item"><a class="nav-link" href="{{ route('user.dashboard') }}">Dashboard</a></li>
