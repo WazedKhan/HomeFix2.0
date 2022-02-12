@@ -25,14 +25,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand h3 sf-toggle-on" href="{{ url('/') }}">
+                <a class="navbar-brand float-left h3 sf-toggle-on" href="{{ url('/') }}">
                     HomeFix
-                </a>
-                <a class="navbar-brand float-right" href="{{ route('service.list') }}">
-                    Services
-                </a>
-                <a class="navbar-brand float-right" href="{{ route('view.cart') }}">
-                    Cart
                 </a>
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
