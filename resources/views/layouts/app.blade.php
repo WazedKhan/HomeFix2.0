@@ -75,12 +75,9 @@
                                 </a>
 
                                 <a class="dropdown-item" href="{{ route('service.create.view') }}">
-                                    Create New Type
-                                </a>
-
-                                <a class="dropdown-item" href="{{ route('service.list.create') }}">
                                     Create New Service
                                 </a>
+
                             </div>
                         </li>
 
