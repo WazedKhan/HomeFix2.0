@@ -70,6 +70,10 @@
                                     Providers List
                                 </a>
 
+                                <a class="dropdown-item" href="{{ route('home') }}">
+                                    Service List
+                                </a>
+
                                 <a class="dropdown-item" href="{{ route('apply.form') }}">
                                     Create New Provider
                                 </a>

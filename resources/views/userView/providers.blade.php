@@ -28,7 +28,7 @@
                             <td>{{ $item->state }}</td>
                             <td>{{ $item->type->cost }}</td>
                             <td>
-                              <a class="btn btn-info" href="{{ route('provider.profile',$item->id) }}">Hire</a>
+                              <a href="{{ route('provider.profile',$item->id) }}">Hire</a>
                             </td>
                             <td><p class="h3">🌟🌟🌟🌟🌟</p></td>
                           </tr>

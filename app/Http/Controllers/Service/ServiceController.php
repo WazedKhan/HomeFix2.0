@@ -50,10 +50,11 @@ class ServiceController extends Controller
         Type::create([
             'name' => request()->name,
             'detail' => request()->detail,
+            'area' => request()->area,
             'cost'=>request()->cost,
             'image' => $image_path
         ]);
-        return redirect()->route('service.list');
+        return redirect()->back();
     }
 
     public function specificService($id)

@@ -18,6 +18,7 @@ class CreateTypesTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('detail');
+            $table->string('area');
             $table->double('cost');
             $table->timestamps();
         });
