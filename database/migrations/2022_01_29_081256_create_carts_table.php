@@ -22,6 +22,7 @@ class CreateCartsTable extends Migration
             $table->string('status')->default('Pending');
             $table->string('customer_status')->default('Pending');
             $table->string('ammount')->nullable();
+            $table->string('tran_id')->nullable();
             $table->timestamps();
         });
     }

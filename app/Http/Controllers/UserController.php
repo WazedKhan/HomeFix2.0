@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\ServiceProvider;
+use Illuminate\Queue\RedisQueue;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -50,6 +53,37 @@ class UserController extends Controller
 
         ]);
         return redirect()->back();
+    }
+
+    public function serviceList()
+    {
+        $types = Type::all();
+        return view('userView.service_list',compact('types'));
+    }
+
+    public function payment($cart_id)
+    {
+        $cart = Cart::find($cart_id);
+        $user = Auth::user();
+        $order = Order::create([
+            'name'=>$user->id,
+            'email'=>$user->email,
+            'phone'=>$user->phone,
+            'address'=>null,
+            'transaction_id'=>uniqid(),
+            'amount'=>$cart->type->cost
+        ]);
+        $cart->update([
+            'customer_status'=>'Done',
+            'tran_id'=>$order->transaction_id
+        ]);
+        return redirect()->back();
+    }
+
+    public function receipt($cart_id)
+    {
+        $cart = Cart::findOrFail($cart_id);
+        return view('userView.receipt',compact('cart'));
     }
 
 }

@@ -42,7 +42,7 @@
             <ul class="list-group mb-3">
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total (BDT)</span>
-                    <strong> {{ $cart->service->cost }} TK</strong>
+                    <strong> {{ $cart->type->cost }} TK</strong>
                 </li>
             </ul>
         </div>
@@ -130,7 +130,7 @@
                 <hr class="mb-4">
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" id="same-address">
-                    <input type="hidden" value="{{ $cart->service->cost }}" name="amount" id="total_amount" required/>
+                    <input type="hidden" value="{{ $cart->type->cost }}" name="amount" id="total_amount" required/>
                     <label class="custom-control-label" for="same-address">Shipping address is the same as my billing
                         address</label>
                 </div>

@@ -32,10 +32,13 @@
                         @if (Auth::check() && Auth::user()->role == 'admin')
                             <li class="nav-item"><a class="nav-link" href="{{ route('dashboard') }}">Admin Panel</a></li>
                         @endif
+                        @if (Auth::check() && Auth::user()->role == 'sp')
+                            <li class="nav-item"><a class="nav-link" href="{{ route('job') }}">Jobs</a></li>
+                        @endif
                         @auth
                         <li class="nav-item"><a class="nav-link" href="{{ route('user.dashboard',Auth::user()->id) }}">Dashboard</a></li>
                         @endauth
-                        <li class="nav-item"><a class="nav-link" href="{{ route('service.list') }}">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user.service/list') }}">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('providers') }}">Servie Provider</a></li>
                         @if (Auth::check())
                         <li class="nav-item"><a class="nav-link" href="{{ route('user.profile',Auth::user()->id) }}">Profile</a></li>

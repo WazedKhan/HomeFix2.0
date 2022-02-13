@@ -24,13 +24,15 @@
                     <td>{{ $item->service_provider->user->name }}</td>
                     <td>{{ $item->service_provider->user->phone }}</td>
                     <td>{{ $item->type->cost }} tk</td>
-                    @if ($item->status == 'Accepted' && $item->customer_status != 'Done')
+                    @if ($item->status == 'Approved' && $item->customer_status != 'Done')
                         <td>
                           <a class="btn btn-outline-info" href="{{ route('goto.payment',$item->id) }}">Pay Now</a>
-                          <a class="btn btn-outline-success" href="{{ route('cart.accept',$item->id) }}">Done</a>
+                          <a class="btn btn-outline-success" href="{{ route('user.cost.solve',$item->id) }}">Done</a>
                         </td>
                     @else
-                        <td>{{ $item->customer_status }}</td>
+                        <td>{{ $item->customer_status }} 
+                          <a href="{{ route('user.receipt',$item->id) }}"><i class="fas fa-receipt    "></i> Receipt</a>
+                        </td> 
                     @endif
                   </tr>
                   

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Type;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\ServiceProvider;
-use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\ApplicationNotification;
 
@@ -73,11 +74,32 @@ class ServiceProviderController extends Controller
     public function providers()
     {
         $provider = ServiceProvider::all();
-        if (Auth::user()->role=='user') {
-            return view('userView.provider_list',compact('provider'));
+        if (Auth::user()->role=='admin') {
+            
+            return view('serviceprovider.list',compact('provider'));
         }
         else{
-        return view('serviceprovider.list',compact('provider'));
+            return view('userView.provider_list',compact('provider'));
         }
     }
+
+    public function jobList()
+    {
+        $provider = ServiceProvider::where('user_id',Auth::user()->id)->first();
+        $job = Cart::where('service_provider_id',$provider->id)->get();
+        return view('userView.job',compact('job'));
+    }
+
+    public function jobApprove($job_id)
+    {
+        Cart::find($job_id)->update(['status'=>'Approved']);
+        return redirect()->back();
+    }
+
+    public function jobDeline($job_id)
+    {
+        Cart::find($job_id)->delete();
+        return redirect()->back();
+    }
+
 }

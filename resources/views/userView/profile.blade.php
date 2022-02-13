@@ -13,9 +13,13 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
                 <div class="col-lg-6">
                     <div class="about-text go-to">
                         <h2 class="dark-color">{{ $provider->user->name }} </h2><a href="#"><span>
+                        
+                        @if (Auth::user()->id != $provider->user->id)
                         <p>
                             <a class="btn btn-info form-control" href="{{ route('date.cart',$provider) }}">Hire Me</a>
                         </p>
+                        @endif
+                        
                         <h6 class="theme-color lead">Profession: {{ $provider->type->name }} </h6> 
                         <div class="row about-list">
                             <div class="col-md-6">

@@ -36,10 +36,7 @@ class CartController extends Controller
     public function cartList()
     {
         $provider_id = ServiceProvider::where('user_id',Auth::user()->id)->first();
-        if (Auth::user()->role == 'sp') {
-            $cart = Cart::where('service_provider_id', $provider_id->id)->get();
-            return view('cart.index', compact('cart'));
-        } elseif (Auth::user()->role == 'user') {
+        if (Auth::user()->role == 'user') {
             $cart = Cart::where('user_id', Auth::user()->id)->get();
             return view('userView.dashboard', compact('cart'));
         } else {

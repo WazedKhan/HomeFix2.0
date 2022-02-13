@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Models\ServiceProvider;
 
 Auth::routes();
 
@@ -70,3 +72,9 @@ Route::get('/userLogout', [UserController::class,'userLogout'])->name('user.logo
 Route::get('/user/{id}/dashboard', [CartController::class,'cartList'])->name('user.dashboard');
 Route::get('/user/profile/{id}', [UserController::class,'profile'])->name('user.profile');
 Route::post('/user/profile/{id}/update', [UserController::class,'profileUpdate'])->name('user.profile.update');
+Route::get('/user/service/list', [UserController::class,'serviceList'])->name('user.service/list');
+Route::get('/job/list', [ServiceProviderController::class,'jobList'])->name('job');
+Route::get('/job/approve/{id}', [ServiceProviderController::class,'jobApprove'])->name('job.approve');
+Route::get('/job/Deline/{id}', [ServiceProviderController::class,'jobDeline'])->name('job.delete');
+Route::get('user/cart/pay/{id}', [UserController::class,'payment'])->name('user.cost.solve');
+Route::get('user/pay/{id}/receipt', [UserController::class,'receipt'])->name('user.receipt');
