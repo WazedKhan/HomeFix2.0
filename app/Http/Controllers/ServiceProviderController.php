@@ -73,6 +73,11 @@ class ServiceProviderController extends Controller
     public function providers()
     {
         $provider = ServiceProvider::all();
+        if (Auth::user()->role=='user') {
+            return view('userView.provider_list',compact('provider'));
+        }
+        else{
         return view('serviceprovider.list',compact('provider'));
+        }
     }
 }

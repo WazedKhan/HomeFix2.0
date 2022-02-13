@@ -67,4 +67,6 @@ Route::get('/trans/', [AdminController::class,'transList'])->name('trans');
 // User Routes
 Route::get('/provider/profile/{id}', [UserController::class,'providerProfile'])->name('provider.profile');
 Route::get('/userLogout', [UserController::class,'userLogout'])->name('user.logout');
-Route::get('/user/dashboard', [CartController::class,'cartList'])->name('user.dashboard');
+Route::get('/user/{id}/dashboard', [CartController::class,'cartList'])->name('user.dashboard');
+Route::get('/user/profile/{id}', [UserController::class,'profile'])->name('user.profile');
+Route::post('/user/profile/{id}/update', [UserController::class,'profileUpdate'])->name('user.profile.update');
