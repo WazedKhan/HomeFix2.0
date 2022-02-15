@@ -28,7 +28,7 @@
                 <a class="navbar-brand float-left h3 sf-toggle-on" href="{{ url('/') }}">
                     HomeFix
                 </a>
-                
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
@@ -89,7 +89,7 @@
                         <a class="navbar-brand float-right " href="{{ route('trans') }}">
                             Transaction List
                         </a>
-                        
+
                         @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -97,9 +97,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile',Auth::user()->id) }}">
+                                    {{-- <a class="dropdown-item" href="{{ route('profile',Auth::user()->id) }}">
                                         Profile
-                                    </a>
+                                    </a> --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -116,8 +116,8 @@
                 </div>
             </div>
         </nav>
-        
-        
+
+
     @endauth
 
         <main class="py-4">
@@ -126,7 +126,7 @@
     </div>
 </body>
 @auth
-    
+
 
 {{-- @include('layouts.footer') --}}
 @endauth
@@ -137,7 +137,7 @@
             script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
             tag.parentNode.insertBefore(script, tag);
         };
-    
+
         window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
     })(window, document);
 </script>
