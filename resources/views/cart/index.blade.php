@@ -22,13 +22,13 @@
     @foreach ($cart as $key=>$item)
       <tr>
         <th scope="row">{{ $key+1 }}</th>
-        <td>{{ $item->service->name }}</td>
+        <td>{{ $item->type->name }}</td>
         @if (auth()->user()->role != 'user')
         <td>{{ $item->user->name }}</td>
         <td><a href="tel:{{ $item->user->phone }}">{{ $item->user->phone }}</a></td>
         <td>Dhaka</td>
         @endif
-        <td>{{ $item->service->cost }} taka</td>
+        <td>{{ $item->type->cost }} taka</td>
         <td>{{ $item->status }}</td>
         @if (auth()->user()->role != 'user' && auth()->user()->role != 'admin' && $item->status == 'Pending')
         <td>
@@ -48,7 +48,7 @@
             <td>{{ $item->customer_status }}</td>
         @endif
       </tr>
-      
+
     @endforeach
     </tbody>
   </table>
