@@ -1,7 +1,40 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 @extends('layouts.app')
-@section('content') <br> <br>
+@section('content')
+<style>
+    #piechart{
+        margin-left: 40% !important;
+    }
+</style>
+<br> <br>
     <div class="container">
         <h2 class="text-center">Dashboard</h2><br><br>
+<div id="piechart"></div>
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Type', 'Total'],
+  ['Total Orders', {{ $order->count() }}],
+  ['Transaction Number',{{ $trans->count() }}],
+  ['Service Providers', {{ $provider->count() }}],
+  ['Services', {{ $servie->count() }}],
+  ['Users', {{ $user->count() }}]
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'', 'width':800, 'height':400};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+<br><br>
         <div id="divToPrint">
         <div class="container">
             <div class="row">
