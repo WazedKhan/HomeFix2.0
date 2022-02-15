@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Profile;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -32,15 +33,15 @@ class ProfileController extends Controller
             $service = Service::where('service_provider_id',$provider->id)->where('status','active')->get();
         }
         $profile = Profile::where('user_id',$user_id)->first();
-
+        $feedback = $feedback = Comment::where('provider_id',$user_id)->get();
         if(Auth::user()->role != 'admin'){
-            return view('profile.index',compact('profile','cart','service','provider'));
+            return view('profile.index',compact('profile','cart','service','provider','feedback'));
         }
         else{
-            return view('userView.profile',compact('profile','cart','service','provider'));
+            return view('userView.profile',compact('profile','cart','service','provider','feedback'));
         }
 
-        
+
     }
     public function editProfileView($profile)
     {
@@ -48,9 +49,9 @@ class ProfileController extends Controller
         return view('profile.edit',compact('profile'));
     }
 
-    public function update($user_id)    
+    public function update($user_id)
     {
-        
+
         $user=User::find($user_id);
         $image_path = $user->image;
         if(request('image')){
