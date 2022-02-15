@@ -1,6 +1,12 @@
 @extends('userView.base')
 @section('content')
+<style>
+    .page-section{
+        margin-left: 15%;
+    }
+</style>
 <section class="page-section">
+    <div id="divToPrint">
     <div class="container pt-5">
         <div class="container bootdey">
             <div class="row invoice row-printable">
@@ -21,7 +27,7 @@
 
                                     <h2>HomeFix</h2>
                                     <p>Money Receipt to {{ $cart->user->name }}<p class="text-secondary">Copyright © HomeFix 2022</p></p>
-                                    
+
 
                                 </div>
                                 <!-- col-lg-6 end here -->
@@ -62,7 +68,7 @@
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
-                                                
+
                                                     <tr>
                                                         <th colspan="2" class="text-right">0% VAT:</th>
                                                         <th class="text-center">0 tk</th>
@@ -76,8 +82,8 @@
                                         </div>
                                     </div>
                                     <div class="invoice-footer mt25">
-                                        <p class="text-center"> {{ \Carbon\Carbon::now()->format('l m-Y')}} 
-                                            <a href="#" class="btn btn-default ml15"><i class="fa fa-print mr5"></i> Print</a>
+                                        <p class="text-center"> {{ \Carbon\Carbon::now()->format('l m-Y')}}
+
                                         </p>
                                     </div>
                                 </div>
@@ -92,4 +98,20 @@
             </div>
             </div>
     </div>
+    </div>
 </section>
+<p class="text-center">
+    <input class="btn btn-success" type="button" onClick="PrintDiv('divToPrint');" value="Print">
+</p>
+<br><br><br>
+@endsection
+
+<script language="javascript">
+    function PrintDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
