@@ -19,4 +19,9 @@ class ServiceProvider extends Model
     {
         return $this->belongsTo(Type::class);
     }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

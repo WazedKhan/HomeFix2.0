@@ -78,3 +78,5 @@ Route::get('/job/approve/{id}', [ServiceProviderController::class,'jobApprove'])
 Route::get('/job/Deline/{id}', [ServiceProviderController::class,'jobDeline'])->name('job.delete');
 Route::get('user/cart/pay/{id}', [UserController::class,'payment'])->name('user.cost.solve');
 Route::get('user/pay/{id}/receipt', [UserController::class,'receipt'])->name('user.receipt');
+Route::post('feedback/{id}', [UserController::class,'feedback'])->name('feedback');
+

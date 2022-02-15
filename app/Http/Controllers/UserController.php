@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Order;
 use App\Models\Type;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Models\ServiceProvider;
 use Illuminate\Queue\RedisQueue;
@@ -23,7 +24,8 @@ class UserController extends Controller
     public function providerProfile($id)
     {
         $provider = ServiceProvider::find($id);
-        return view('userView.profile', compact('provider'));
+        $feedback = Comment::where('provider_id',$id)->get();
+        return view('userView.profile', compact('provider','feedback'));
     }
     public function userLogout()
     {
@@ -86,4 +88,14 @@ class UserController extends Controller
         return view('userView.receipt',compact('cart'));
     }
 
+    public function feedback($id)
+    {
+        Comment::create([
+            'provider_id'=>$id,
+            'text'=>request()->text,
+            'user_id'=>Auth::user()->id
+        ]);
+        return redirect()->back();
+    }
+    
 }
