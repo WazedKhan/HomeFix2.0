@@ -28,6 +28,7 @@ class CreateServiceProvidersTable extends Migration
             $table->string('status')->default('Pending');
             $table->integer('exprience')->nullable();
             $table->double('job_finished')->default(0);
+            $table->string('deletestatus')->default(0);
             $table->timestamps();
         });
     }

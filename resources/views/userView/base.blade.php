@@ -35,9 +35,12 @@
                         @if (Auth::check() && Auth::user()->role == 'sp')
                             <li class="nav-item"><a class="nav-link" href="{{ route('job') }}">Jobs</a></li>
                         @endif
-                        @auth
+                        @if (Auth::check() && Auth::user()->role == 'admin')
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user.dashboard',Auth::user()->id) }}">Cart</a></li>
+                        @endif
+                        @if (Auth::check() && Auth::user()->role == 'user')
                         <li class="nav-item"><a class="nav-link" href="{{ route('user.dashboard',Auth::user()->id) }}">Dashboard</a></li>
-                        @endauth
+                        @endif
                         <li class="nav-item"><a class="nav-link" href="{{ route('user.service/list') }}">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('providers') }}">Servie Provider</a></li>
                         @if (Auth::check())
@@ -54,7 +57,7 @@
         <!-- Masthead-->
 
         @yield('content')
-        
+
         <!-- Footer-->
         <footer class="footer py-4">
             <div class="container">
@@ -72,7 +75,7 @@
                 </div>
             </div>
         </footer>
-        
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

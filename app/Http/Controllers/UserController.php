@@ -7,6 +7,7 @@ use App\Models\Type;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Comment;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use App\Models\ServiceProvider;
 use Illuminate\Queue\RedisQueue;
@@ -18,7 +19,19 @@ class UserController extends Controller
     {
         $types = Type::all();
         $providers = ServiceProvider::all();
-        return view('userView.home',compact('types','providers'));
+        $message = Contact::all();
+        return view('userView.home',compact('types','providers','message'));
+    }
+
+    public function contact(Request $request)
+    {
+        Contact::create([
+             'name'=> $request->name,
+             'email'=> $request->email,
+             'phone'=> $request->phone,
+             'message'=> $request->message,
+        ]);
+        return redirect()->back()->with('success','Submit Successfully');
     }
 
     public function providerProfile($id)
@@ -59,8 +72,15 @@ class UserController extends Controller
 
     public function serviceList()
     {
+        $key=null;
+        if(request()->search){
+            $key=request()->search;
+            $types = Type::where('name','LIKE','%'.$key.'%')
+                ->get();
+            return view('userView.service_list',compact('types','key'));
+        }
         $types = Type::all();
-        return view('userView.service_list',compact('types'));
+        return view('userView.service_list',compact('types','key'));
     }
 
     public function payment($cart_id)
@@ -97,5 +117,5 @@ class UserController extends Controller
         ]);
         return redirect()->back();
     }
-    
+
 }

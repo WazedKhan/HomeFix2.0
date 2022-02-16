@@ -12,8 +12,6 @@
                     <th scope="col">Phone</th>
                     <th scope="col">Lives In</th>
                     <th scope="col">Service Cost</th>
-                    <th scope="col">Action</th>
-                    <th scope="col">Reputation</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -25,10 +23,6 @@
                     <td>{{ $item->user->phone }}</td>
                     <td>{{ $item->state }}</td>
                     <td>{{ $item->type->cost }}</td>
-                    <td>
-                      <a class="btn btn-info" href="#">Hire</a>
-                    </td>
-                    <td><p class="h3">🌟🌟🌟🌟🌟</p></td>
                   </tr>
                   @endforeach
                 </tbody>

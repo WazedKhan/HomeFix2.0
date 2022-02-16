@@ -25,9 +25,9 @@ class ServiceProviderController extends Controller
     public function applicationSubmit()
     {
         // dd(request()->type_id);
-         
+
         $image_path  = request('image')->store('profile', 'public');
-        
+
         $user = User::create([
             'role'=>'sp',
             'image'=>$image_path,
@@ -50,7 +50,7 @@ class ServiceProviderController extends Controller
             'exprience' => request()->exprience,
             'status' => 'Approve'
         ]);
-        return redirect()->route('home');
+        return redirect()->route('providers');
     }
 
 
@@ -75,7 +75,7 @@ class ServiceProviderController extends Controller
     {
         $provider = ServiceProvider::all();
         if (Auth::user()->role=='admin') {
-            
+
             return view('serviceprovider.list',compact('provider'));
         }
         else{
@@ -100,6 +100,14 @@ class ServiceProviderController extends Controller
     {
         Cart::find($job_id)->delete();
         return redirect()->back();
+    }
+    public function deleteProvider($id)
+    {
+        $provider = ServiceProvider::find($id);
+        $provider->update([
+            'deletestatus'=> 1
+        ]);
+        return redirect()->route('providers');
     }
 
 }

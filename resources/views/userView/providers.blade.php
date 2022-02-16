@@ -1,6 +1,5 @@
 @extends('userView.base')
 @section('content')
-    <!-- Services-->
     <section class="page-section">
         <div class="container pt-5">
             <div class="container">
@@ -20,6 +19,7 @@
                         </thead>
                         <tbody>
                             @foreach ($providers as $key=>$item)
+                            @if ($item->deletestatus == '0')
                           <tr>
                             <th scope="row">{{ $key+1 }}</th>
                             <td>{{ $item->user->name }}</td>
@@ -28,10 +28,15 @@
                             <td>{{ $item->state }}</td>
                             <td>{{ $item->type->cost }}</td>
                             <td>
+                              @if(Auth::user()->role == 'user')
                               <a href="{{ route('provider.profile',$item->id) }}">Hire</a>
+                              @else
+                              <a href="{{ route('provider.profile',$item->id) }}">Show</a>
+                              @endif
                             </td>
                             <td><p class="h3">🌟🌟🌟🌟🌟</p></td>
                           </tr>
+                          @endif
                           @endforeach
                         </tbody>
                       </table>

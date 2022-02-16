@@ -4,12 +4,13 @@
         <div class="text-center h3">Providers</div>
         <div class="list-group">
             @foreach ($provider as $item)
+            @if ($item->deletestatus == 0)
             <div class="container">
-                <a href="{{ route('profile',$item->user_id) }}" 
+                <a href="{{ route('profile',$item->user_id) }}"
                     class="list-group-item list-group-item-action list-group-item-primary">
                         <div class="row">
                           <div class="col-sm">
-                                <img class="rounded-circle" src="{{ url('/storage/'.$item->user->image) }}" width="30" height="30" >  
+                                <img class="rounded-circle" src="{{ url('/storage/'.$item->user->image) }}" width="30" height="30" >
                                 <strong>{{ $item->user->name }}</strong>
                           </div>
                           <div class="col-sm">
@@ -19,8 +20,10 @@
                             <strong>{{ $item->exprience }}</strong> Years exprience
                           </div>
                         </div>
+                        <a href="{{ route('delete',$item->id) }}">Delete</a>
                 </a>
               </div>
+              @endif
             @endforeach
         </div>
     </div>

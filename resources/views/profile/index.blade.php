@@ -16,7 +16,7 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
                         @if ($provider != null)
                         <h6 class="theme-color lead">NID Number: {{ $provider->nid_number }} </h6>
                         @endif
-                        
+
                         <p></p>
                         <div class="row about-list">
                             <div class="col-md-6">
@@ -74,7 +74,7 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
                 </div>
             </div>
             <div class="counter">
-                
+
                 @if ($service != null)
                 <div class="text-center h3" >Offerd Services</div>
                 <div class="list-group">
@@ -107,8 +107,8 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
                         </tbody>
                       </table>
                 </div>
-                @endif 
-                
+                @endif
+
                 @if ($cart != null)
                 <div class="text-center h3" >Taken Services</div>
                     <table class="table table-striped table-inverse table-responsive">
@@ -133,10 +133,10 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
                                 @endforeach
                             </tbody>
                     </table>
-                @endif   
+                @endif
             </div>
         </div>
     </section>
-    
-</div>    
+
+</div>
 @endsection

@@ -13,14 +13,16 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
                 <div class="col-lg-6">
                     <div class="about-text go-to">
                         <h2 class="dark-color">{{ $provider->user->name }} </h2><a href="#"><span>
-                        
+
                         @if (Auth::user()->id != $provider->user->id)
+                        @if(Auth::user()->role == 'user')
                         <p>
                             <a class="btn btn-info form-control" href="{{ route('date.cart',$provider) }}">Hire Me</a>
                         </p>
                         @endif
-                        
-                        <h6 class="theme-color lead">Profession: {{ $provider->type->name }} </h6> 
+                        @endif
+
+                        <h6 class="theme-color lead">Profession: {{ $provider->type->name }} </h6>
                         <div class="row about-list">
                             <div class="col-md-6">
                                 <div class="media">
@@ -79,7 +81,7 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
             </div>
             <div class="counter">
                 <div class="row">
-                    
+
                     <form action="{{ route('feedback',$provider->id) }}" method="post">
                         @csrf
                         <label for="">FeedBack</label>
@@ -93,15 +95,15 @@ $age = Carbon\Carbon::parse($birthday)->diff(Carbon\Carbon::now())->format('%y y
                         <strong>Name: {{ $item->user->name }}</strong>
                         Feedback:{{ $item->text }}
                     @endforeach
-                    
+
                 </div>
-                
+
             </div>
-            
+
         </div>
     </section>
-    
-</div>    
+
+</div>
 
 
 @endsection

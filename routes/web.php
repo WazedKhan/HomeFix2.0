@@ -12,6 +12,7 @@ use App\Models\ServiceProvider;
 Auth::routes();
 
 Route::get('/', [UserController::class,'index'])->name('user.home');
+Route::post('/contact', [UserController::class,'contact'])->name('user.contact');
 
 Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
 
@@ -42,7 +43,7 @@ Route::get('/apply/forsp', [App\Http\Controllers\ServiceProviderController::clas
 Route::post('/application/sumbit', [App\Http\Controllers\ServiceProviderController::class, 'applicationSubmit'])->name('application.submit');
 Route::get('/application/list', [App\Http\Controllers\ServiceProviderController::class, 'applicationlist'])->name('application.list');
 Route::post('/application/action/{provider_id}', [App\Http\Controllers\ServiceProviderController::class, 'providerApprove'])->name('application.action');
-
+Route::get('/delete/{id}', [App\Http\Controllers\ServiceProviderController::class, 'deleteProvider'])->name('delete');
 // cart
 Route::get('selectDate/cart/{id}', [App\Http\Controllers\CartController::class, 'selectDate'])->name('date.cart');
 Route::get('service/cart/{id}', [App\Http\Controllers\CartController::class, 'createCart'])->name('create.cart');

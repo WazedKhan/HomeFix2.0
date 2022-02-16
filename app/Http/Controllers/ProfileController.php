@@ -33,7 +33,7 @@ class ProfileController extends Controller
             $service = Service::where('service_provider_id',$provider->id)->where('status','active')->get();
         }
         $profile = Profile::where('user_id',$user_id)->first();
-        $feedback = $feedback = Comment::where('provider_id',$user_id)->get();
+        $feedback = Comment::where('provider_id',$user_id-1)->get();
         if(Auth::user()->role != 'admin'){
             return view('profile.index',compact('profile','cart','service','provider','feedback'));
         }
