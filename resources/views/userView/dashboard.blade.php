@@ -13,7 +13,7 @@
                     <th scope="col">Provider Number</th>
                     <th scope="col">Price</th>
                     <th scope="col">Status</th>
-
+                    <th scope="col">Receipt</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -30,12 +30,17 @@
                           <a class="btn btn-outline-success" href="{{ route('user.cost.solve',$item->id) }}">Done</a>
                         </td>
                     @else
-                        <td>{{ $item->customer_status }} 
-                          <a href="{{ route('user.receipt',$item->id) }}"><i class="fas fa-receipt    "></i> Receipt</a>
-                        </td> 
+                        <td>{{ $item->customer_status }} </td>
+                    @endif
+                    @if ($item->customer_status == 'Done')
+                    <td>
+                    <a href="{{ route('user.receipt',$item->id) }}"><i class="fas fa-receipt"></i> Receipt</a>
+                    </td>
+                    @else
+                    <td></td>
                     @endif
                   </tr>
-                  
+
                 @endforeach
                 </tbody>
               </table>
