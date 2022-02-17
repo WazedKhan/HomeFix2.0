@@ -1,7 +1,11 @@
 @extends('userView.base')
 @section('content')
-    <!-- Services-->
     <section class="page-section">
+        @if(session()->has('message'))
+<p class="alert alert-danger">
+    {{session()->get('message')}}
+</p>
+@endif
         <div class="container pt-5">
             <form action="{{ route('create.cart',$provider_id) }}" method="GET">
                 <div class="form-group">

@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\ServiceProvider;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Mockery\Generator\StringManipulation\Pass\Pass;
 
@@ -23,7 +24,12 @@ class CartController extends Controller
 
     public function createCart($provider_id)
     {
+        $date = request()->date;
+        $date_now = Carbon::now();
+        $date_now = $date_now->toDateString();
         $provider = ServiceProvider::find($provider_id);
+        // dd($date>=$date_now);
+        if($date>=$date_now){
         Cart::create([
             'type_id' => $provider->type_id,
             'service_provider_id' => $provider->id,
@@ -31,6 +37,11 @@ class CartController extends Controller
             'booking_date'=>request()->date
         ]);
         return redirect()->route('user.home');
+        }
+        else{
+            return redirect()->back()->with('message','You Can not select Previous Date');;
+        }
+
     }
 
     public function cartList()

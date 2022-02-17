@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\ServiceProvider;
+use App\Models\Type;
 
 class AdminController extends Controller
 {
@@ -24,14 +25,14 @@ class AdminController extends Controller
         {
             $total += $item->amount;
         }
-        
+
         return view('trans.list',compact('transList','total'));
     }
 
     public function dashboard()
     {
         $user=User::where('role','user')->get();
-        $servie=Service::where('status','active')->get();
+        $servie=Type::all();
         $provider=ServiceProvider::all();
         $order = Cart::all();
         $trans = Order::all();
